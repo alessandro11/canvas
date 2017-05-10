@@ -25,11 +25,9 @@ var range = 10;
 var ind = -1;
 
 /*________________________________________________________________________*/
-document.oncontextmenu=function () { return false };
-
-function novaLinha(X1,Y1,X2,Y2)
+function novaLinha(X1, Y1, X2, Y2)
 {
-	var nova=linhas.length;
+	var nova = linhas.length;
 
 	linhas[nova] = {
 		edit:-1, //0: Can not be edited | 1: source point | 2: destination point | 3: middle of the line
@@ -49,7 +47,7 @@ function novaLinha(X1,Y1,X2,Y2)
 
 function criaVertice()
 {
-	var novo=V.length;
+	var novo = V.length;
 
 	V[V.length] = {
 		x:0,
@@ -147,6 +145,12 @@ function achaVertices(n)
 
 function novoPoligono()
 {
+
+	context.clearRect(0, 0, WIDTH, HEIGHT);
+	linhas = new Array();
+	origem = new Array();
+	V = new Array();
+
 	n = prompt("Digite um número >=3 e <=8");
 	while( (n > 8) || ( n < 3) ) {
 		alert("Valor fora da faixa aceitável!");
@@ -155,7 +159,7 @@ function novoPoligono()
 	achaVertices(n);
 }
 
-function inLine(reta,Px,Py)
+function inLine(reta, Px, Py)
 {
 	var x1 = reta.x1;
 	var x2 = reta.x2;
@@ -192,6 +196,7 @@ function MouseDown(evt)
 {
 	Yd = evt.clientY;
 	Xd = evt.clientX;
+
 	for (var i=0; i < linhas.length; i++) {
 		if( ind == -1) {
 			reta = linhas[i];
@@ -283,6 +288,9 @@ function Atualizar()
 	Desenhar();
 }
 
+document.oncontextmenu=function()
+{ return false };
+
 function MousePosXY(evt)
 { document.getElementById('mouse_pos').innerHTML = "(X, Y) = " + evt.clientX + ", " + evt.clientY; }
 
@@ -292,5 +300,6 @@ window.onload = function()
 window.addEventListener('mousedown', MouseDown, true);
 window.addEventListener('mouseup', MouseUp, true);
 window.addEventListener('mousemove', MousePosXY, true);
+document.getElementById('new_polygon').addEventListener('click', novoPoligono, true);
 
-novoPoligono();
+novaLinha(350, 300, 700, 300);
