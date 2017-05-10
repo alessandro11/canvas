@@ -25,7 +25,7 @@ var range = 10;
 var ind = -1;
 
 /*________________________________________________________________________*/
-function novaLinha(X1, Y1, X2, Y2)
+function NewLine(X1, Y1, X2, Y2)
 {
 	var nova = linhas.length;
 
@@ -138,9 +138,9 @@ function achaVertices(n)
 	}
 
 	for (var i = 0; i < n - 1; i++) {
-		novaLinha(V[i].x, V[i].y, V[i+1].x, V[i+1].y);
+		NewLine(V[i].x, V[i].y, V[i+1].x, V[i+1].y);
 	}
-	novaLinha(V[n-1].x, V[n-1].y, V[0].x, V[0].y);
+	NewLine(V[n-1].x, V[n-1].y, V[0].x, V[0].y);
 }
 
 function novoPoligono()
@@ -217,7 +217,7 @@ function MouseDown(evt)
 				linhas[i].edit = 3;
 				window.addEventListener('mousemove', MouseMove, true);
 			}else if( (inLine(linhas[i], Xd, Yd)) && (evt.which == 3)) {
-				novaLinha(linhas[i].x1, linhas[i].y1, linhas[i].x2, linhas[i].y2);
+				NewLine(linhas[i].x1, linhas[i].y1, linhas[i].x2, linhas[i].y2);
 				linhas[i].edit = 4;
 				window.addEventListener('mousemove', MouseMove, false);
 			}else {
@@ -302,4 +302,4 @@ window.addEventListener('mouseup', MouseUp, true);
 window.addEventListener('mousemove', MousePosXY, true);
 document.getElementById('new_polygon').addEventListener('click', novoPoligono, true);
 
-novaLinha(350, 300, 700, 300);
+NewLine(350, 300, 700, 300);
