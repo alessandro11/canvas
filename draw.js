@@ -45,7 +45,7 @@ function NewLine(X1, Y1, X2, Y2)
 	}
 }
 
-function criaVertice()
+function NewVertex()
 {
 	var novo = V.length;
 
@@ -57,10 +57,10 @@ function criaVertice()
 	return novo;
 }
 
-function achaVertices(n)
+function GetVertexes(n)
 {
 	for(i = 0; i < n; i++) {
-		criaVertice();
+		NewVertex();
 	}
 
 	if( n == 3 ) {
@@ -143,7 +143,7 @@ function achaVertices(n)
 	NewLine(V[n-1].x, V[n-1].y, V[0].x, V[0].y);
 }
 
-function novoPoligono()
+function NewPolygon()
 {
 
 	context.clearRect(0, 0, WIDTH, HEIGHT);
@@ -156,7 +156,7 @@ function novoPoligono()
 		alert("Valor fora da faixa aceitável!");
 		n = prompt("Digite um número >=3 e <=8");
 	}
-	achaVertices(n);
+	GetVertexes(n);
 }
 
 function inLine(reta, Px, Py)
@@ -180,7 +180,7 @@ function inLine(reta, Px, Py)
 	return 0;
 }
 
-function Desenhar()
+function Draw()
 {
 	for (var i=0; i < linhas.length; i++) {
 		reta = linhas[i];
@@ -282,24 +282,25 @@ function MouseMove(evt)
 	}
 }
 
-function Atualizar()
+function Update()
 {
 	context.clearRect(0, 0, WIDTH, HEIGHT);
-	Desenhar();
+	Draw();
 }
 
-document.oncontextmenu=function()
+document.oncontextmenu = function()
 { return false };
 
 function MousePosXY(evt)
 { document.getElementById('mouse_pos').innerHTML = "(X, Y) = " + evt.clientX + ", " + evt.clientY; }
 
 window.onload = function()
-{ setInterval(Atualizar, 10); }
+{ setInterval(Update, 10); }
+
 
 window.addEventListener('mousedown', MouseDown, true);
 window.addEventListener('mouseup', MouseUp, true);
 window.addEventListener('mousemove', MousePosXY, true);
-document.getElementById('new_polygon').addEventListener('click', novoPoligono, true);
+document.getElementById('new_polygon').addEventListener('click', NewPolygon, true);
 
 NewLine(350, 300, 700, 300);
