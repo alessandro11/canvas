@@ -246,7 +246,7 @@ function MouseMove(evt)
 		switch (linhas[ind].edit) {
 			case 1:
 				if( (Xm < WIDTH) && (Xm > 0) ) {
-					linhas[ind].x1=Xm;
+					linhas[ind].x1 = Xm;
 				}
 				if( (Ym < HEIGHT) && ( Ym > 0)) {
 					linhas[ind].y1 = Ym;
